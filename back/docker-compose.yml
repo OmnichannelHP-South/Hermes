@@ -1,0 +1,12 @@
+# backend django, docker compose
+version: "3.9"
+services:
+  backend:
+    container_name: django-hermes
+    image: django-hermes
+    build: .
+    ports:
+      - "9070:7070"
+    # command: 
+    #   python manage.py migrate &&
+    #   python manage.py runserver
