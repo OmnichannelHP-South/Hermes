@@ -14,12 +14,12 @@ RUN pip3 install -r requirements.txt --no-cache-dir
 COPY core ./core
 
 # RUN cd core
-RUN python3 core/manage.py makemigrations
-RUN python3 core/manage.py migrate
+# RUN python3 core/manage.py makemigrations
+# RUN python3 core/manage.py migrate
 # RUN python3 core/manage.py runserver
 
 
 EXPOSE 7070
 # python run server
-ENTRYPOINT ["python3"] 
-CMD ["core/manage.py", "runserver", "0.0.0.0:7070"]
+# ENTRYPOINT ["python3"] 
+# CMD ["core/manage.py", "runserver", "0.0.0.0:7070"]
