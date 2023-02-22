@@ -8,6 +8,9 @@
 #Virtual environment files
 venv/
 
+# ignore folder migrations
+migrations/
+
 # Icon must end with two \r
 Icon
 
