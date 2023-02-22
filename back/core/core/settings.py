@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'core',
     'mailAlert',
     'rest_framework',
+    'receiveMail',
 ]
 
 MIDDLEWARE = [
