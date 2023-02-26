@@ -11,3 +11,13 @@ services:
       sh -c "python3 core/manage.py makemigrations && 
              python core/manage.py migrate && 
              python core/manage.py runserver 0.0.0.0:7070"
+
+      
+  # Redis
+  redis:
+    image: redis:7.0.8-alpine
+    container_name: redis-hermes
+    command: >
+      --bind 0.0.0.0
+    ports:
+      - 6379:6379
