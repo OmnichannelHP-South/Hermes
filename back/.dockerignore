@@ -1,0 +1,19 @@
+# ignore venv folder
+*/venv/
+
+# ignore .DS_Store files
+.DS_Store
+
+# ignore .idea folder
+.idea/
+
+# ignore .vscode folder
+.vscode/
+
+# ignore .pytest_cache folder
+.pytest_cache/
+
+# ignore .coverage file
+.coverage
+
+# ignore .coverage.* file
