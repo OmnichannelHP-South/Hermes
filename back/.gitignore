@@ -93,3 +93,6 @@ local_settings.py
 
 .env
 db.sqlite3
+
+# ignorar archivos de migraciones y postgress
+db/
