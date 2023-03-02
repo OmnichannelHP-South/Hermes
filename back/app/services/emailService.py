@@ -14,15 +14,11 @@ class EmailService:
             # Conectamos con el servidor
             print("*****Conectando con el servidor*****")
             mail = imaplib.IMAP4_SSL(os.environ.get('SMTP_SERVER'))
-            # mail = imaplib.IMAP4_SSL('imap.gmail.com')
             # Iniciamos sesión. El primer parámetro es el usuario y el segundo la contraseña
             mail.login(os.environ.get('EMAIL_USER'), os.environ.get('EMAIL_PASSWORD'))
-
             # Nos conectamos a la bandeja de entrada
             mail.select('inbox')
-            # Buscamos los correos no leídos
-            result, data = mail.search(None, 'SEEN')
-
+            # Buscamos los emails que contengan el asunto "Print status"
             result, data = mail.search(None, '(UNSEEN Subject "%s")' % "Print status")
 
             print("mostrando data:")
