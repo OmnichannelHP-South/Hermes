@@ -9,11 +9,11 @@ services:
       - .:/django
     ports:
       - "9070:7070"
-    # command: >
-    #   sh -c "python3 app/manage.py makemigrations && 
-    #          python app/manage.py migrate && 
-    #          python app/manage.py runserver 0.0.0.0:7070"
-    command: python app/manage.py runserver 0.0.0.0:7070
+    command: >
+      sh -c "python3 app/manage.py makemigrations && 
+             python app/manage.py migrate && 
+             python app/manage.py runserver 0.0.0.0:7070"
+    # command: python app/manage.py runserver 0.0.0.0:7070
     depends_on:
       - db
   
