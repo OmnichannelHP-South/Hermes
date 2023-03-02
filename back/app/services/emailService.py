@@ -3,20 +3,20 @@ import imaplib
 from dotenv import load_dotenv
 import email
 import traceback
+import os
 
 # Cargamos las variables de entorno
-# configurar en un futuro para que se carguen en el archivo .env
-# load_dotenv(".env")
+load_dotenv(".env")
 class EmailService:
     
     def read_email(self):
         try:
             # Conectamos con el servidor
-            mail = imaplib.IMAP4_SSL('imap.gmail.com', port=993)
+            print("*****Conectando con el servidor*****")
+            mail = imaplib.IMAP4_SSL(os.environ.get('SMTP_SERVER'))
+            # mail = imaplib.IMAP4_SSL('imap.gmail.com')
             # Iniciamos sesión. El primer parámetro es el usuario y el segundo la contraseña
-
-            # ingresar aqui mail y usuario
-            mail.login('mail', 'password')
+            mail.login(os.environ.get('EMAIL_USER'), os.environ.get('EMAIL_PASSWORD'))
 
             # Nos conectamos a la bandeja de entrada
             mail.select('inbox')
