@@ -14,8 +14,10 @@ class EmailService:
             # Conectamos con el servidor
             mail = imaplib.IMAP4_SSL('imap.gmail.com', port=993)
             # Iniciamos sesión. El primer parámetro es el usuario y el segundo la contraseña
-            mail.login('osasbothp@gmail.com', r'yC9f*n!3&/#A5"1nlVZ\x$w')
-            mail.login('hpomniverse@gmail.com', r'ugcsebtvehdrdnju')
+
+            # ingresar aqui mail y usuario
+            mail.login('mail', 'password')
+
             # Nos conectamos a la bandeja de entrada
             mail.select('inbox')
             # Buscamos los correos no leídos
