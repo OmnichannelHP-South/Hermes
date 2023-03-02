@@ -5,15 +5,28 @@ services:
     container_name: django-hermes
     image: django-hermes
     build: .
+    volumes:
+      - .:/django
     ports:
       - "9070:7070"
-    command: >
-      sh -c "python3 core/manage.py makemigrations && 
-             python core/manage.py migrate && 
-             python core/manage.py runserver 0.0.0.0:7070"
+    # command: >
+    #   sh -c "python3 app/manage.py makemigrations && 
+    #          python app/manage.py migrate && 
+    #          python app/manage.py runserver 0.0.0.0:7070"
+    command: python app/manage.py runserver 0.0.0.0:7070
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:15.2-alpine
+    volumes:
+      - ./app/data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    container_name: postgres-db
 
-      
-  # Redis
   redis:
     image: redis:7.0.8-alpine
     container_name: redis-hermes
@@ -21,3 +34,19 @@ services:
       --bind 0.0.0.0
     ports:
       - 6379:6379
+    
+  celery:
+    restart: always
+    build: 
+      context: .
+    command: >
+      sh -c "cd app && 
+             celery -A core worker -l INFO"
+    # command: celery -A app/core worker -l INFO
+    volumes:
+      - .:/django
+    container_name: celery-hermes
+    depends_on:
+      - db
+      - redis
+      - backend
