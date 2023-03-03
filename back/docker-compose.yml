@@ -50,3 +50,19 @@ services:
       - db
       - redis
       - backend
+  
+    #Celery Beat
+  celery-beat:
+    build:
+      context: .
+    command: >
+      sh -c "cd app && 
+             celery -A core beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler"
+    volumes:
+      - .:/django
+    container_name: celery-beat
+    restart: always
+    depends_on:
+      - db
+      - redis
+      - backend
