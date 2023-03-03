@@ -51,7 +51,7 @@ services:
       - redis
       - backend
   
-    #Celery Beat
+  #Celery Beat
   celery-beat:
     build:
       context: .

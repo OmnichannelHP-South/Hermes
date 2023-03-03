@@ -6,7 +6,7 @@ import traceback
 import os
 
 # Cargamos las variables de entorno
-load_dotenv(".env")
+load_dotenv()
 class EmailService:
     
     def read_email(self):
@@ -29,7 +29,9 @@ class EmailService:
             id_list = mail_ids.split()
 
             print('Mails list: ', id_list)
-            id_list = [b'172']
+            # email de prueba para ver 
+            # id_list = [b'172']
+
             for mail_id in id_list:
                 result, data = mail.fetch(str(mail_id, encoding='UTF-8'), '(RFC822)')
 
