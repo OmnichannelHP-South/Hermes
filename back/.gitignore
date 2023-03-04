@@ -96,3 +96,5 @@ db.sqlite3
 
 # ignorar archivos de migraciones y postgress
 db/
+# carpeta de respaldo de la base de datos
+db 2/
