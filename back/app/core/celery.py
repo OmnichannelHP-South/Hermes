@@ -23,4 +23,4 @@ app.conf.beat_schedule = {
   }
 }
 
-app.conf.timezone = 'UTC'
+app.conf.timezone = 'America/Santiago'
