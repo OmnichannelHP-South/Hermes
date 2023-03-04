@@ -10,7 +10,13 @@ logger = get_task_logger(__name__)
 def receiveEmails():
     print("Iniciando tarea...")
     email = EmailService()
-    email.read_email()
+    flag_mails_encontrados = email.read_email()
+    
+    # Si se encontraron correos no leidos se envia un email 
+    if flag_mails_encontrados:
+        print("Enviando email...")
+        email.send_email()
+        
     print("Terminando tarea")
     return
 

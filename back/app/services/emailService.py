@@ -1,15 +1,26 @@
 import imaplib
-# Para importar variables de entorno
+# Libreria necesaria para importar las variables de entorno
 from dotenv import load_dotenv
 import email
 import traceback
 import os
+# Librerias para enviar el correo
+from django.conf import settings
+from django.core.mail import send_mail
 
 # Cargamos las variables de entorno
 load_dotenv()
 class EmailService:
-    
     def read_email(self):
+        '''
+        Revisa la bandeja de entrada y entre los correos no leidos busca el que tenga el asunto "Print status"
+
+        Si encuentra un correo devuelve un booleano.
+        TODO: a futuro pensar en el caso de que se detecten multiples correos no leidos
+        '''
+
+        flag_mails_encontrados = False
+
         try:
             # Conectamos con el servidor
             print("*****Conectando con el servidor*****")
@@ -27,14 +38,17 @@ class EmailService:
             mail_ids = data[0]
 
             id_list = mail_ids.split()
-
-            print('Mails list: ', id_list)
+            print('data: ', data)
+            print('Mails list (id_list): ', id_list)
             # email de prueba para ver 
             # id_list = [b'172']
 
+            # si id_list no es vacio significa que hay correos no leidos
+            if id_list:
+                flag_mails_encontrados = True
+
             for mail_id in id_list:
                 result, data = mail.fetch(str(mail_id, encoding='UTF-8'), '(RFC822)')
-
 
                 for response_part in data:
                     if isinstance(response_part, tuple):
@@ -60,4 +74,19 @@ class EmailService:
         except Exception as e:
             print("*****Operación fallida*****")
             traceback.print_exc()
-            print(str(e))     
+            print(str(e))  
+
+        return flag_mails_encontrados
+
+    def send_email(self):
+        '''
+        Funcion que envia un mail
+
+        TODO: añadir distintas platillas HTML y que estas sean un parametro de la función. Esto pensando en el caso de un email para: "abrir incidente", "asignar técnico", "cerrar incidente", etc.
+        '''
+        send_mail(
+            subject='Ojos cerrados ojos abiertos',
+            message='Write an amazing message',
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=['gonzaloespanah@gmail.com'])
+        return
