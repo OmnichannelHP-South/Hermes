@@ -7,6 +7,8 @@ import os
 # Librerias para enviar el correo
 from django.conf import settings
 from django.core.mail import send_mail
+# Libreria para renderizar el template HTML. Documentación: https://docs.djangoproject.com/en/4.1/topics/templates/
+from django.template.loader import render_to_string
 
 # Cargamos las variables de entorno
 load_dotenv()
@@ -84,9 +86,15 @@ class EmailService:
 
         TODO: añadir distintas platillas HTML y que estas sean un parametro de la función. Esto pensando en el caso de un email para: "abrir incidente", "asignar técnico", "cerrar incidente", etc.
         '''
+        print("Current working directory 1: {0}".format(os.getcwd()))
+        mensaje = render_to_string('/django/app/services/templates/Template_mail/ticket.html')
+
+
         send_mail(
-            subject='Ojos cerrados ojos abiertos',
-            message='Write an amazing message',
+            subject='Un incidente ha sido generado',
+            message='',
             from_email=settings.EMAIL_HOST_USER,
-            recipient_list=['gonzaloespanah@gmail.com'])
+            recipient_list=['gonzaloespanah@gmail.com'],
+            html_message=mensaje,
+        )
         return

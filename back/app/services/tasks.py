@@ -3,6 +3,10 @@ from __future__ import absolute_import, unicode_literals
 from core.celery import app
 from celery.utils.log import get_task_logger
 from .emailService import EmailService
+from django.template import loader
+
+# Libreria para renderizar el template HTML. Documentación: https://docs.djangoproject.com/en/4.1/topics/templates/
+# from django.template.loader import render_to_string
 
 logger = get_task_logger(__name__)
 

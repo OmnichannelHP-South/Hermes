@@ -18,16 +18,18 @@
 
 <body>
     <div class="container-fluid">
-        <!-- Primera fila titulo -->
+        {% comment %} <!-- Primera fila titulo --> {% endcomment %}
         <div class="row justify-content-center py-3" style="background-color:#FF8901;">
             <div class="col-4" >
-                <h1 style="font-family: Arial, Helvetica, sans-serif;" class="fs-3 pt-2 fw-bold">Un incidente ha sido detectado</h1>
+                <p style="font-family: Arial, Helvetica, sans-serif;" class="fs-3 pt-2 fw-bold mb-0">Un incidente ha sido detectado</p>
+                {% comment %} <p style="font-family: Arial, Helvetica, sans-serif;" class="fs-4 fw-bold mt-0">Ticket #{{ num_ticket }}</p> {% endcomment %}
+                <p style="font-family: Arial, Helvetica, sans-serif;" class="fs-4 fw-bold mt-0">Ticket #5163</p>
             </div>
             <div class="col-1 d-flex aligns-items-center justify-content-center">
-                <img src="Logos/HP_Black_RGB_150_MN.png" alt="" class="my-auto" style="width: 50px; height: 50px;">
+                <img src="Logos/HP_Black_RGB_150_MD.png" alt="" class="my-auto" style="width: 4rem; height: 4rem;">
             </div>
         </div>
-        <!-- Segunda fila #ticket -->
+        {% comment %} <!-- Segunda fila #ticket --> {% endcomment %}
         <div class="row justify-content-center py-3" style="background-color:#FDAA4A;">
             <div class="col-5" >
                 <h1 style="font-family: Arial, Helvetica, sans-serif;" class="fs-6 pt-2">Ticket #5498</h1>
