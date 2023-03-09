@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # apps
     'core',
     'mailAlert',
+    'newapp',
     'services',
     
 
