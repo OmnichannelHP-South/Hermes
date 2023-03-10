@@ -91,7 +91,7 @@ class EmailService:
 
 
         send_mail(
-            subject='Un incidente ha sido generado',
+            subject='Un incidente ha sido generado — Ticket 3291 ',
             message='',
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=['gonzaloespanah@gmail.com'],
