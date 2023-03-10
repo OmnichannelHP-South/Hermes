@@ -22,6 +22,5 @@ from services.views import EmailRead
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api', include('mailAlert.urls')),
     path('mail', EmailRead.as_view(), name='mail'),
 ]
